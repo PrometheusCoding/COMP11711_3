@@ -41,11 +41,37 @@ void q5()
     int a;
     int b;
     int buffer;
-    scanf("Value1: %i ", &a);
-    scanf("Value2: %i", &b);
+    printf("Enter value 1: ");
+    scanf("%i", &a);
+    printf("Enter value 2: ");
+    scanf("%i", &b);
+
     buffer = a; 
     a = b;
     b = buffer;
+}
+
+void q6()
+{
+    int number, result;
+    printf("Enter a value: ");
+    scanf("%i", &number);
+    result = number % 2;
+    if (result == 0){
+        printf("The number is even\n");
+    } else {
+        printf("The number is odd\n");
+    }
+}
+
+int q8(int number)
+{
+    if (number >= 1){
+    return(number*q8(number-1));
+    } else {
+        return 1;
+    }
+
 }
 
 int main()
@@ -53,7 +79,9 @@ int main()
     // q1();
     // q2();
     // q3();
-    //q4();
-    q5();
+    // q4();
+    // q5();
+    // q6();
+    // printf("%i\n", q8(15));
     return 0;
 }
