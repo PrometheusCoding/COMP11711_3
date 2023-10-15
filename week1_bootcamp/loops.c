@@ -65,26 +65,24 @@ void findMaxInt(){
 
 void shift(){
     int arr[10] = {0,1,2,3,4,5,6,7,8,9};
-    int i =0;
-    int temp;
-    for(i=0;i<10; i++){
-        if(i==0){
-            temp = arr[i+1];
-            arr[i+1] = arr[i];
-        }
-        else if(1<=i<=8){
-            
-        }
-    
+    int i=10-1;
+    int temp = arr[10-1];
+    for(i=10-1;i>0; i--){
+        arr[i] = arr[i-1];
+    }
+    arr[0] = temp;
+    for(i=0; i<10;i++){
+        printf("%d", arr[i]);
     }
 }
 
 int main(){
-    //forLoops()
-    //whileLoops();
-    //popList();
-    //reverseHello();
+    // forLoops()
+    // whileLoops();
+    // popList();
+    // reverseHello();
     // sumIntInArr();
     // findMaxInt();
+    shift();
     return 0;
 }
