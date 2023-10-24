@@ -47,6 +47,7 @@ void tokeniseRecord(const char *input, const char *delimiter,
 // Complete the main function
 int main() {
     FILE *csvPtr;
+    char filename[100];
     char datapoint[100];
     int noOfdatapoints = 0;
     char dataArr[100][25];
@@ -54,29 +55,30 @@ int main() {
     char timeArr[100][25];
     char stepsArr[100][25];
     int i = 0;
-    csvPtr = fopen("FitnessData_2023.csv", "r");
+    printf("Enter the filename that you would like to check (Remember to include the .csv): ");
+    scanf("%s", filename);
+    csvPtr = fopen(filename, "r");
     if (csvPtr == NULL){
-        printf("The file did not open");
+        printf("The file did not open\n");
     }else{
+
         while(fgets(dataArr[noOfdatapoints], 100, csvPtr)){
-            //printf("%s\n", dataArr[noOfdatapoints]);
-            //printf("%s", dataArr[noOfdatapoints]);
             noOfdatapoints ++;
-        }
-    while (i<noOfdatapoints){
-        tokeniseRecord(dataArr[i], ",", dateArr[i], timeArr[i], stepsArr[i]);
-        // printf("Date: %s ", dateArr[i]);
-        // printf("time: %s ", timeArr[i]);
-        // printf("steps: %s \n", stepsArr[i]);
-        i++;
-    }
-    printf("Number of records in file: %d\n", noOfdatapoints);
-    }
+            }
+
+        while (i<noOfdatapoints){
+            tokeniseRecord(dataArr[i], ",", dateArr[i], timeArr[i], stepsArr[i]);
+            i++;
+            }
+
+        printf("Number of records in file: %d\n", noOfdatapoints);
+
+        i = 0;
+        while (i<3){
+            printf("%s/%s/%s", dateArr[i], timeArr[i], stepsArr[i]);
+            i++;
+            }
     fclose(csvPtr);
-    i = 0;
-    while (i<3){
-        printf("%s/%s/%s", dateArr[i], timeArr[i], stepsArr[i]);
-        i++;
     }
 
 
