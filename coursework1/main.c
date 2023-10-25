@@ -46,39 +46,38 @@ void tokeniseRecord(const char *input, const char *delimiter,
 
 // Complete the main function
 int main() {
-    FILE *csvPtr;
-    char filename[100];
-    char datapoint[100];
+    FILE *csvPtr; // Stores the pointer for the CSV file
+    char filename[100];  // Stores the name of the CSV file
     int noOfdatapoints = 0;
-    char dataArr[100][25];
-    char dateArr[100][25];
-    char timeArr[100][25];
-    char stepsArr[100][25];
-    int i = 0;
+    char dataArr[100][25]; // Stores all the data from the file 
+    char dateArr[100][25]; // Stores the dates from the file in order of accessing from the CSV
+    char timeArr[100][25]; // Stores the times from the file in order of accessing from the CSV
+    char stepsArr[100][25]; // Storest the steps from the file in order of accessing from the CSV
+    int iter = 0; // General variable which is used to loop through certain arrays
     printf("Enter the filename that you would like to check (Remember to include the .csv): ");
     scanf("%s", filename);
     csvPtr = fopen(filename, "r");
-    if (csvPtr == NULL){
+    if (csvPtr == NULL){ // Checks to see that the file exists
         printf("The file did not open\n");
     }else{
 
-        while(fgets(dataArr[noOfdatapoints], 100, csvPtr)){
+        while(fgets(dataArr[noOfdatapoints], 100, csvPtr)){ // Loops through the file and stores the data in dataArr until there is no more data to get
             noOfdatapoints ++;
             }
 
-        while (i<noOfdatapoints){
-            tokeniseRecord(dataArr[i], ",", dateArr[i], timeArr[i], stepsArr[i]);
-            i++;
+        while (iter<noOfdatapoints){ // Goes through the dataArr and using the tokeniseRecord function splits the data into date,time,steps arrays
+            tokeniseRecord(dataArr[iter], ",", dateArr[iter], timeArr[iter], stepsArr[iter]);
+            iter++;
             }
 
         printf("Number of records in file: %d\n", noOfdatapoints);
 
-        i = 0;
-        while (i<3){
-            printf("%s/%s/%s", dateArr[i], timeArr[i], stepsArr[i]);
-            i++;
+        iter = 0;
+        while (iter<3){ // Prints the first three records in "%s/%s/%s" format.
+            printf("%s/%s/%s", dateArr[iter], timeArr[iter], stepsArr[iter]);
+            iter++;
             }
-    fclose(csvPtr);
+    fclose(csvPtr); // Closes the file
     }
 
 
